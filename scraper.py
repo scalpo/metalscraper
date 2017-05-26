@@ -119,6 +119,8 @@ def scrape_band(band):
                     band['themes'] = vals[i]
                 elif key == 'Current label':
                     band['current_label'] = vals[i]
+            
+            band['logo'] = map(lambda x: x.text_content(), root.cssselect('#logo > img'))
             save_band(band)
             return True
     save_band_failed(band)
@@ -170,13 +172,13 @@ links: http://www.metal-archives.com/link/ajax-list/type/band/id/3540277491
 for genre in genres:
     scrape_genre(genre)
 
-scrape_bands(500)
+scrape_bands(50)
 sleep(500)
-scrape_bands(500)
-sleep(500)
-scrape_bands(500)
-sleep(500)
-scrape_bands(500)
+#scrape_bands(500)
+#sleep(500)
+#scrape_bands(500)
+#sleep(500)
+#scrape_bands(500)
 
 #clean_old_placenames()
 '''
