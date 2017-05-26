@@ -10,7 +10,7 @@ from datetime import datetime
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6'}
 
-genres = ('heavy', 'black', 'death', 'doom', 'thrash', 'speed', 'folk', 'power', 'prog', 'electronic', 'gothic', 'orchestral', 'avantgarde')
+genres = ('folk') #heavy', 'black', 'death', 'doom', 'thrash', 'speed', 'folk', 'power', 'prog', 'electronic', 'gothic', 'orchestral', 'avantgarde')
 
 genre_root = 'http://www.metal-archives.com/browse/ajax-genre/g/'
 
@@ -45,6 +45,7 @@ def scrape_genre_page(genre, page):
     try: 
         json_obj = json.loads(r.text)
         process_json(json_obj, genre)
+        doneIt = 1
         return True
     except:
         print "error parsing JSON or no request body! ", str(r)
@@ -61,7 +62,7 @@ def process_json(page, genre):
         band['genre'] = item[2]
         band['id'] = id
         band['category'] = genre
-        band['scraped'] = 0        
+        band['scraped'] = -1    
         #print bands[str(id)]
         scraperwiki.sqlite.save(unique_keys=['id'], data=band)
 
