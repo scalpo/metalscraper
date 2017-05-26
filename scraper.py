@@ -62,7 +62,7 @@ def process_json(page, genre):
         band['genre'] = item[2]
         band['id'] = id
         band['category'] = genre
-        band['scraped'] = -1    
+        #band['scraped'] = -1    
         #print bands[str(id)]
         scraperwiki.sqlite.save(unique_keys=['id'], data=band)
 
