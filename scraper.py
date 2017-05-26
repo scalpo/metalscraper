@@ -61,6 +61,7 @@ def process_json(page, genre):
         band['genre'] = item[2]
         band['id'] = id
         band['category'] = genre
+        band['scraped'] = 0        
         #print bands[str(id)]
         scraperwiki.sqlite.save(unique_keys=['id'], data=band)
 
@@ -172,7 +173,7 @@ links: http://www.metal-archives.com/link/ajax-list/type/band/id/3540277491
 for genre in genres:
     scrape_genre(genre)
 
-scrape_bands(50)
+scrape_bands(5)
 sleep(500)
 #scrape_bands(500)
 #sleep(500)
